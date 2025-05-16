@@ -1,6 +1,6 @@
 // /*
 //  * Author: Jaivardhan D Rao
-//  * Date: 2025-05-09 20:44
+//  * Date: 2025-05-13 10:11
 //  */
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -13,6 +13,7 @@
 // #define pb      push_back
 // #define ss      second
 // #define gi      greater<int>
+// #define vvi      vector<vector<int>>
 // #define vi      vector<int>
 // #define v      vector
 // #define mii      map<int , int>
@@ -32,39 +33,31 @@
 // int dy[4] = {0 , 0 , 1 , -1};
 // const int MOD = 1e9 + 7;
 // const bool test = 0;
-
-// map<tuple<int, int, int, int>, int> dp;
-// set<pii> vis;
-
-// int rec(int x, int y, int steps, int dir) {
-//     if (steps == 0) {
-//         vis.insert({x, y});
-//         return 1;
-//     }
-//     auto key = make_tuple(x, y, steps, dir);
-//     if (dp.count(key)) return dp[key];
-//     int &ans = dp[key];
-//     ans = 0;
-//     if (dir == 0 || dir == 1) {
-//         ans += rec(x + dx[2], y + dy[2], steps - 1, 2);
-//         ans += rec(x + dx[3], y + dy[3], steps - 1, 3);
-//     } else {
-//         ans += rec(x + dx[0], y + dy[0], steps - 1, 0);
-//         ans += rec(x + dx[1], y + dy[1], steps - 1, 1);
-//     }
-//     return ans;
-// }
+// const int INF = 1e6 + 1;
 
 // void solve() {
-//     int n; cin >> n;
-//     vis.clear();
-//     for (int i = 0; i < 4; i++) {
-//         int xx = dx[i];
-//         int yy = dy[i];
-//         rec(xx, yy, n - 1, i);
+//     string s1, a = "AB", b = "BA";
+//     cin >> s1;
+
+//     int k = s1.find(a);
+//     if (k != -1) {
+//         k = s1.find(b, k + 2); 
+//         if (k != -1) {
+//             cout << "YES" << endl;
+//             return;
+//         }
 //     }
 
-//     cout << vis.size() << endl;
+//     k = s1.find(b);
+//     if (k != -1) {
+//         k = s1.find(a, k + 2);
+//         if (k != -1) {
+//             cout << "YES" << endl;
+//             return;
+//         }
+//     }
+
+//     cout << "NO" << endl;
 // }
 
 
@@ -77,12 +70,11 @@
 //     }
 // }
 
-// above one is tle or mle
 
-// correct code
+
 /*
  * Author: Jaivardhan D Rao
- * Date: 2025-05-09 22:22
+ * Date: 2025-05-13 10:11
  */
 #include<bits/stdc++.h>
 using namespace std;
@@ -95,6 +87,7 @@ using namespace std;
 #define pb      push_back
 #define ss      second
 #define gi      greater<int>
+#define vvi      vector<vector<int>>
 #define vi      vector<int>
 #define v      vector
 #define mii      map<int , int>
@@ -114,16 +107,31 @@ int dx[4] = {-1 , 1 , 0 , 0};
 int dy[4] = {0 , 0 , 1 , -1};
 const int MOD = 1e9 + 7;
 const bool test = 0;
+const int INF = 1e6 + 1;
 
-void solve(){
+void solve() {
+    string s1, a = "AB", b = "BA";
+    cin >> s1;
 
-    int n;
-    cin >> n;
+    int k = s1.find(a);
+    if (k != -1) {
+        k = s1.find(b, k + 2); 
+        if (k != -1) {
+            cout << "YES" << endl;
+            return;
+        }
+    }
 
-    if (n % 2)
-        cout << 2 * (n / 2 + 1) * (n / 2 + 2) << endl;
-    else
-        cout << (n / 2 + 1) * (n / 2 + 1) << endl;
+    k = s1.find(b);
+    if (k != -1) {
+        k = s1.find(a, k + 2);
+        if (k != -1) {
+            cout << "YES" << endl;
+            return;
+        }
+    }
+
+    cout << "NO" << endl;
 }
 
 
