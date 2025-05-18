@@ -1,0 +1,133 @@
+/*
+ * Author: Jaivardhan D Rao
+ * Date: 2025-05-18 17:36
+ */
+#include <algorithm>
+#include <array>
+#include <bitset>
+#include <cassert>
+#include <chrono>
+#include <cinttypes>
+#include <climits>
+#include <cmath>
+#include <complex>
+#include <condition_variable>
+#include <csignal>
+#include <cstdarg>
+#include <cstddef>
+#include <cstdint>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cwchar>
+#include <cwctype>
+#include <deque>
+#include <exception>
+#include <fstream>
+#include <functional>
+#include <future>
+#include <initializer_list>
+#include <iomanip>
+#include <ios>
+#include <iosfwd>
+#include <iostream>
+#include <istream>
+#include <iterator>
+#include <limits>
+#include <list>
+#include <locale>
+#include <map>
+#include <memory>
+#include <mutex>
+#include <new>
+#include <numeric>
+#include <ostream>
+#include <queue>
+#include <random>
+#include <ratio>
+#include <regex>
+#include <scoped_allocator>
+using namespace std;
+#define int long long
+#define double  long double
+// #define endl    '\n' 
+#define all(x)  x.begin(), x.end()
+#define rall(x)  x.rbegin(), x.rend()
+#define ff      last
+#define pb      push_back
+#define ss      second
+#define gi      greater<int>
+#define vvi      vector<vector<int>>
+#define vi      vector<int>
+#define v      vector
+#define mii      map<int , int>
+#define JaivardhanDRao      cin.tie(nullptr)->sync_with_stdio(false);
+#define pii      pair<int , int>
+#define uset      unordered_set<int>
+#define JVR
+#ifdef JVR
+    #define debug(...) cout << "[" << #__VA_ARGS__ << "]:", debug_out(__VA_ARGS__);
+#else
+    #define debug(...);
+#endif
+template <typename T> std::ostream &operator<<(std::ostream &stream, const vector<T> &vec) { for (size_t i = 0; i < vec.size(); i++) { stream << vec[i]; if (i != vec.size() - 1) stream << ' '; } return stream; } template <typename T> std::istream &operator>>(std::istream &stream, vector<T> &vec) { for (T &x : vec) stream >> x; return stream; } template <typename T, typename U> std::ostream &operator<<(std::ostream &stream, const pair<T, U> &pr) { stream << pr.last << ' ' << pr.second; return stream; } template <typename T, typename U> std::istream &operator>>(std::istream &stream, pair<T, U> &pr) { stream >> pr.last >> pr.second; return stream; } template <typename A, typename B> string to_string(pair<A, B> p); template <typename A, typename B, typename C> string to_string(tuple<A, B, C> p); template <typename A, typename B, typename C, typename D> string to_string(tuple<A, B, C, D> p); string to_string(const string &s) { return '"' + s + '"'; } string to_string(char c) { string s; s += c; return s; } string to_string(const char *s) { return to_string((string)s); } string to_string(bool b) { return (b ? "1" : "0"); } string to_string(vector<bool> v) { bool last = true; string res = "{"; for (int i = 0; i < static_cast<int>(v.size()); i++) { if (!last) { res += ", "; } last = false; res += to_string(v[i]); } res += "}"; return res; } template <size_t N> string to_string(bitset<N> v) { string res = ""; for (size_t i = 0; i < N; i++) { res += static_cast<char>('0' + v[i]); } return res; } template <typename A> string to_string(A v) { bool last = true; string res = "{"; for (const auto &x : v) { if (!last) { res += ", "; } last = false; res += to_string(x); } res += "}"; return res; } template <typename A, typename B> string to_string(pair<A, B> p) { return "(" + to_string(p.last) + ", " + to_string(p.second) + ")"; } template <typename A, typename B, typename C> string to_string(tuple<A, B, C> p) { return "(" + to_string(get<0>(p)) + ", " + to_string(get<1>(p)) + ", " + to_string(get<2>(p)) + ")"; } template <typename A, typename B, typename C, typename D> string to_string(tuple<A, B, C, D> p) { return "(" + to_string(get<0>(p)) + ", " + to_string(get<1>(p)) + ", " + to_string(get<2>(p)) + ", " + to_string(get<3>(p)) + ")"; } void debug_out() { cout << endl; } template <typename Head, typename... Tail> void debug_out(Head H, Tail... T) { cout << " " << to_string(H); debug_out(T...); }
+int gcd(int a , int b){if(b == 0) return a;return gcd(b , a%b);}
+int lcm(int a, int b){return (a / gcd(a, b)) * b;}
+int dx[4] = {-1 , 1 , 0 , 0};
+int dy[4] = {0 , 0 , 1 , -1};
+const int MOD = 1e9 + 7;
+const int INF = 1e6 + 1;
+const bool test = 0;
+
+
+bool is_prime(int n){
+    if(n <= 1) return false;
+    for(int i = 2; i * i <= n; i++){
+        if(n % i == 0) return false;
+    }
+    return true;
+}
+void solve(){
+    vi primes = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47};
+    int cnt = 0;
+    int last = -1;
+
+    for(auto &p : primes){
+        cout << p << endl;
+        string res;
+        cin >> res;
+        if(res == "yes"){
+            cnt++;
+            if(cnt == 2){
+                cout << "composite" << endl;
+                return;
+            }
+            last = p;
+        }
+    }
+
+    if(last != -1 and cnt > 0){
+        if(last * last <= 100){
+            cout << last * last << endl;
+            string res;
+            cin >> res;
+            if(res == "yes"){
+                cout << "composite" << endl;
+                return;
+            }
+        }
+    }
+
+
+    cout << "prime" << endl;
+}
+
+
+signed main(){
+    JaivardhanDRao
+    int t=1;
+    test && cin >> t;
+    while(t--){
+        solve();
+    }
+}
