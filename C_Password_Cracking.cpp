@@ -1,12 +1,71 @@
 /*
  * Author: Jaivardhan D Rao
- * Date: 2025-05-18 18:40
+ * Date: 2025-05-18 19:35
  */
-#include<bits/stdc++.h>
+#include <algorithm>
+#include <array>
+#include <bitset>
+#include <cassert>
+#include <chrono>
+#include <cinttypes>
+#include <climits>
+#include <cmath>
+#include <complex>
+#include <condition_variable>
+#include <csignal>
+#include <cstdarg>
+#include <cstddef>
+#include <cstdint>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cwchar>
+#include <cwctype>
+#include <deque>
+#include <exception>
+#include <fstream>
+#include <functional>
+#include <future>
+#include <initializer_list>
+#include <iomanip>
+#include <ios>
+#include <iosfwd>
+#include <iostream>
+#include <istream>
+#include <iterator>
+#include <limits>
+#include <list>
+#include <locale>
+#include <map>
+#include <memory>
+#include <mutex>
+#include <new>
+#include <numeric>
+#include <ostream>
+#include <queue>
+#include <random>
+#include <ratio>
+#include <regex>
+#include <scoped_allocator>
+#include <set>
+#include <sstream>
+#include <stack>
+#include <stdexcept>
+#include <streambuf>
+#include <string>
+#include <system_error>
+#include <tuple>
+#include <typeindex>
+#include <typeinfo>
+#include <unordered_map>
+#include <unordered_set>
+#include <utility>
+#include <valarray>
+#include <vector>
 using namespace std;
 #define int long long
 #define double  long double
-#define endl    '\n' 
+// #define endl    '\n' 
 #define all(x)  x.begin(), x.end()
 #define rall(x)  x.rbegin(), x.rend()
 #define ff      first
@@ -33,14 +92,45 @@ int dx[4] = {-1 , 1 , 0 , 0};
 int dy[4] = {0 , 0 , 1 , -1};
 const int MOD = 1e9 + 7;
 const int INF = 1e6 + 1;
-const bool test = 0;
+const bool test = 1;
+
+
+int ask(string str){
+    cout << "? " << str << endl;
+    int x; cin >> x;
+    return x;
+}
 
 void solve(){
-    
-    int n, m;     
-    
-    
-    
+    int n; cin >> n;
+
+    string ans = "";
+
+    while(ans.size() < n){
+        if(ask(ans + '0')){
+            ans += '0';
+            continue;
+        }
+        else if(ask(ans + '1')){
+            ans += '1';
+            continue;
+        }
+        else break;
+    }
+
+    while(ans.size() < n){
+        if(ask('0' + ans)){
+            ans = '0' + ans;
+            continue;
+        }
+        else{
+            ans = '1' + ans;
+            continue;
+        }
+        break;
+    }
+
+    cout << "! " << ans << endl;
 }
 
 

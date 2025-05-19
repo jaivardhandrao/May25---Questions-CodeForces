@@ -20,7 +20,7 @@ using namespace std;
 #define JaivardhanDRao      cin.tie(nullptr)->sync_with_stdio(false);
 #define pii      pair<int , int>
 #define uset      unordered_set<int>
-#define JVR
+// #define JVR
 #ifdef JVR
     #define debug(...) cout << "[" << #__VA_ARGS__ << "]:", debug_out(__VA_ARGS__);
 #else
@@ -35,21 +35,49 @@ const int MOD = 1e9 + 7;
 const int INF = 1e6 + 1;
 const bool test = 0;
 
+bool comp(pair<char , int> a , pair<char , int> b){
+    return a.second > b.second;
+}
+
 void solve(){
     
     int n,k; cin >> n >> k;
     string str; cin >> str;
-    sort(rall(str));
-    debug(str);
+
+
+    map<char , int> mp;
+    for(int i = 0; i<n; i++){
+        mp[str[i]]++;
+    }
+
+    set<char> st(all(str));
+    v<pair<char , int>> pr;
+
+    for(auto &it : st){
+        pr.pb({it , mp[it]});
+    }
+
+    sort(all(pr) , comp);
+
 
     int ans = 0;
-    for(int i = 0; i<k; i++){
-        ans+= (str[i] - 'A');
-        debug(ans);
+    int k1 = k;
+    debug(pr);
+    for(auto &it : pr){
+        debug(it.ss , k1 , ans);
+        if(!k1) break;
+        if(it.ss <= k1){
+            ans+= (it.ss * it.ss);
+            k1-= it.ss;
+        }else{
+            ans+= (k1 * k1);
+            k1 = 0;
+        }
+        debug(it.ss , k1 , ans);
+
     }
 
     cout << ans << endl;
-        
     
     
     

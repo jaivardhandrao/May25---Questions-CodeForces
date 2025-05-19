@@ -1,12 +1,12 @@
 /*
  * Author: Jaivardhan D Rao
- * Date: 2025-05-18 18:40
+ * Date: 2025-05-18 18:43
  */
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 #define int long long
 #define double  long double
-#define endl    '\n' 
+// #define endl    '\n' 
 #define all(x)  x.begin(), x.end()
 #define rall(x)  x.rbegin(), x.rend()
 #define ff      first
@@ -35,12 +35,47 @@ const int MOD = 1e9 + 7;
 const int INF = 1e6 + 1;
 const bool test = 0;
 
-void solve(){
-    
-    int n, m;     
-    
-    
-    
+int ask(int i , int j){
+    cout << "? " << i << " " << j << endl;
+    int x; cin >> x;
+    return x;
+}
+
+void solve() {
+    vi arr = {4, 8, 15, 16, 23, 42};
+    int ans[6] = {0};
+
+    int mul1 = ask(1, 2);
+    int mul2 = ask(1, 3);
+    int mul3 = ask(1, 4);
+    int mul4 = ask(1, 5);
+
+    for (int i = 5; i >= 0; i--) {
+        if (mul2 % arr[i] == 0 && mul1 % arr[i] == 0 && mul3 % arr[i] == 0 && mul4 % arr[i] == 0) {
+            ans[0] = arr[i];
+            ans[1] = mul1 / arr[i];
+            ans[2] = mul2 / arr[i];
+            ans[3] = mul3 / arr[i];
+            ans[4] = mul4 / arr[i];
+            break;
+        }
+    }
+
+    for (int i = 0; i < 6; i++) {
+        bool found = false;
+        for (int j = 0; j < 6; j++) {
+            if (arr[i] == ans[j]) found = true;
+        }
+        if (!found) {
+            ans[5] = arr[i];
+        }
+    }
+
+    cout << "! ";
+    for (int i = 0; i < 6; i++) {
+        cout << ans[i] << " ";
+    }
+    cout << endl;
 }
 
 

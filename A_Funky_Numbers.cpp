@@ -1,6 +1,6 @@
 /*
  * Author: Jaivardhan D Rao
- * Date: 2025-05-18 18:40
+ * Date: 2025-05-19 10:03
  */
 #include<bits/stdc++.h>
 using namespace std;
@@ -20,7 +20,7 @@ using namespace std;
 #define JaivardhanDRao      cin.tie(nullptr)->sync_with_stdio(false);
 #define pii      pair<int , int>
 #define uset      unordered_set<int>
-#define JVR
+// #define JVR
 #ifdef JVR
     #define debug(...) cout << "[" << #__VA_ARGS__ << "]:", debug_out(__VA_ARGS__);
 #else
@@ -37,7 +37,37 @@ const bool test = 0;
 
 void solve(){
     
-    int n, m;     
+    int n; cin >> n;
+
+
+    if(n == 1){
+        cout << "NO" << endl;
+        return;
+    }
+
+    int left = 0, right = n;
+    int ans = -1;
+    vi arr;
+    set<int> st;
+    for(int i = 1; ((i) * (i + 1)) / 2 <= n; i++){
+        int sum = ((i) * (i + 1))/ 2;
+        debug(i , sum);
+        arr.pb(sum);
+        st.insert(sum);
+    }
+
+    debug(arr);
+
+
+    for(int i = 0; i<arr.size(); i++){
+        if(st.find(n - arr[i]) != st.end()){
+            cout << "YES" << endl;
+            return;
+        }
+    }
+    cout << "NO" << endl;
+    
+    
     
     
     

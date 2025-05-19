@@ -1,12 +1,75 @@
 /*
  * Author: Jaivardhan D Rao
- * Date: 2025-05-18 18:40
+ * Date: 2025-05-18 19:10
  */
-#include<bits/stdc++.h>
+#include <algorithm>
+#include <array>
+#include <bitset>
+#include <cassert>
+#include <chrono>
+#include <cinttypes>
+#include <climits>
+#include <cmath>
+#include <complex>
+#include <condition_variable>
+#include <csignal>
+#include <cstdarg>
+#include <cstddef>
+#include <cstdint>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cwchar>
+#include <cwctype>
+#include <deque>
+#include <exception>
+#include <fstream>
+#include <functional>
+#include <future>
+#include <initializer_list>
+#include <iomanip>
+#include <ios>
+#include <iosfwd>
+#include <iostream>
+#include <istream>
+#include <iterator>
+#include <limits>
+#include <list>
+#include <locale>
+#include <map>
+#include <memory>
+#include <mutex>
+#include <new>
+#include <numeric>
+#include <ostream>
+#include <queue>
+#include <random>
+#include <ratio>
+#include <regex>
+#include <scoped_allocator>
+#include <set>
+#include <sstream>
+#include <stack>
+#include <stdexcept>
+#include <streambuf>
+#include <string>
+#include <strstream>
+#include <system_error>
+#include <thread>
+#include <tuple>
+#include <type_traits>
+#include <typeindex>
+#include <typeinfo>
+#include <unordered_map>
+#include <unordered_set>
+#include <utility>
+#include <valarray>
+#include <variant>
+#include <vector>
 using namespace std;
 #define int long long
 #define double  long double
-#define endl    '\n' 
+// #define endl    '\n' 
 #define all(x)  x.begin(), x.end()
 #define rall(x)  x.rbegin(), x.rend()
 #define ff      first
@@ -35,14 +98,56 @@ const int MOD = 1e9 + 7;
 const int INF = 1e6 + 1;
 const bool test = 0;
 
-void solve(){
-    
-    int n, m;     
-    
-    
-    
+int ask(int i, int j)
+{
+    cout << "? " << i << " " << j << endl;
+    int x;
+    cin >> x;
+    return x;
 }
 
+void solve()
+{
+    int n; 
+    cin >> n;
+
+    int ini = ask(1, n);
+
+    if (ini > 1 && ask(1, ini) == ini)
+    {
+        int low = 1, high = ini - 1;
+
+        while (low <= high)
+        {
+            int mid = low + (high - low) / 2;
+
+            if (ask(mid, ini) == ini)
+                low = mid + 1;
+            else
+                high = mid - 1;
+        }
+
+        cout << "! " << high << endl;
+        return;
+    }
+    else
+    {
+        int low = ini + 1, high = n;
+
+        while (low <= high)
+        {
+            int mid = low + (high - low) / 2;
+
+            if (ask(ini, mid) == ini)
+                high = mid - 1;
+            else
+                low = mid + 1;
+        }
+
+        cout << "! " << low << endl;
+        return;
+    }
+}
 
 signed main(){
     JaivardhanDRao

@@ -1,6 +1,6 @@
 /*
  * Author: Jaivardhan D Rao
- * Date: 2025-05-18 18:40
+ * Date: 2025-05-19 00:41
  */
 #include<bits/stdc++.h>
 using namespace std;
@@ -32,13 +32,55 @@ int lcm(int a, int b){return (a / gcd(a, b)) * b;}
 int dx[4] = {-1 , 1 , 0 , 0};
 int dy[4] = {0 , 0 , 1 , -1};
 const int MOD = 1e9 + 7;
-const int INF = 1e6 + 1;
-const bool test = 0;
+const int INF = 1e7 + 1;
+const bool test = 1;
+vi spf(INF , true);
+vi primes;
+
+void seive(){
+
+    spf[0] = spf[1] = false;
+    for (int i = 2; i * i < INF; ++i) {
+        if (spf[i]) {
+            for (int j = i * i; j < INF; j += i){
+                spf[j] = false;
+            }
+        }
+    }
+    primes.clear();
+    for (int i = 2; i < INF; ++i){
+        if (spf[i]) primes.pb(i);
+    }
+
+}
 
 void solve(){
     
-    int n, m;     
-    
+    int n,k; cin >> n;
+    vi arr(n); for(auto &it : arr) cin >> it;
+
+    sort(rall(arr));
+    // debug(arr);
+
+    vi pref(n+1, 0);
+    vi prep(n+1, 0);
+ 
+    for(int i=1; i<=n; i++){
+        pref[i] = pref[i-1] + arr[i-1];
+        prep[i] = prep[i-1] + primes[i-1];
+    }
+
+    int cnt = 0;
+    for(int i = 1; i<=n; i++){
+        if(pref[i] < prep[i]){
+            cout << n - i + 1 << endl;
+            return;
+        }
+    }
+
+    cout << 0 << endl;
+    return;
+
     
     
 }
@@ -47,6 +89,7 @@ void solve(){
 signed main(){
     JaivardhanDRao
     int t=1;
+    seive();
     test && cin >> t;
     while(t--){
         solve();
