@@ -1,6 +1,6 @@
 /*
  * Author: Jaivardhan D Rao
- * Date: 2025-05-28 14:47
+ * Date: 2025-05-29 21:25
  */
 #include<bits/stdc++.h>
 using namespace std;
@@ -17,8 +17,8 @@ using namespace std;
 #define vi      vector<int>
 #define v      vector
 #define mii      map<int , int>
-#define yes     cout<<"Yes"<<endl;
-#define no      cout<<"No"<<endl;
+#define yes     cout<<"YES"<<endl;
+#define no      cout<<"NO"<<endl;
 #define JaivardhanDRao      cin.tie(nullptr)->sync_with_stdio(false);
 using pii = pair<int , int>;
 #define uset      unordered_set<int>
@@ -38,42 +38,73 @@ const int INF = 1e6 + 1;
 
 const bool test = 1;
 
+void solve() {
 
 
-void solve(){
-         
-    int n , a , b; cin >> n >> a >> b;
-    // 24 3 5
-    // 1 se  3  , 6 aayega
-    // 3 se 9 , 8 aayega
-    // 6 se 18 , 11 aayega
-    // 9 se 27 , 14 aayega
-    // 8 se 24 , 13 aayega
+    string str; cin >> str;
 
+    // saare 0
+    // saare 1
 
-    // 1, na, n+b
+    // phle se 00001111
+    // ya 111000
 
+    int n = str.size();
+    int cnt1 = count(all(str) , '1');
+    int cnt0 = count(all(str) , '0');
 
-
-    if((n-1)%b == 0){
-        yes
+    if(n == cnt1 or cnt0 == n){
+        cout << 0 << endl;
         return;
     }
 
-    if(a==1){
-        no
-        return;
-    }
+    int mn = n;
 
 
-    for(int i = a; i<=n; i*=a){
-        if((n-i)%b == 0){
-            yes
-            return; 
+    int cnt = 0;
+    for(int i = 0; i<n-1; i++){
+        if(str[i] != str[i + 1]){
+            cnt++;
         }
     }
+
+    if(cnt == 1){
+        cout << 0 << endl;
+        return;
+    }
+
+
     
-    no
+
+
+    for (int i = 0; i < n; i++) {
+        int cost1 = 0;
+        int cost2 = 0;
+        // vaha tak ya toh 1 ya 0
+
+        for (int j = 0; j < i; j++) {
+            if (str[j] != '0') cost1++;
+        }
+
+        for (int j = i; j < n; j++) {
+            if (str[j] != '1') cost1++;
+        }
+
+        
+
+        for (int j = 0; j < i; j++) {
+            if (str[j] != '1') cost2++;
+        }
+
+        for (int j = i; j < n; j++) {
+            if (str[j] != '0') cost2++;
+        }
+
+
+        mn = min({cost1 , mn , cost2});
+    }
+    
+    cout << mn << endl;
 }
 
 

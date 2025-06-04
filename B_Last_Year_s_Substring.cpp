@@ -1,6 +1,6 @@
 /*
  * Author: Jaivardhan D Rao
- * Date: 2025-05-28 14:47
+ * Date: 2025-05-29 22:53
  */
 #include<bits/stdc++.h>
 using namespace std;
@@ -17,8 +17,8 @@ using namespace std;
 #define vi      vector<int>
 #define v      vector
 #define mii      map<int , int>
-#define yes     cout<<"Yes"<<endl;
-#define no      cout<<"No"<<endl;
+#define yes     cout<<"YES"<<endl;
+#define no      cout<<"NO"<<endl;
 #define JaivardhanDRao      cin.tie(nullptr)->sync_with_stdio(false);
 using pii = pair<int , int>;
 #define uset      unordered_set<int>
@@ -39,41 +39,40 @@ const int INF = 1e6 + 1;
 const bool test = 1;
 
 
-
 void solve(){
-         
-    int n , a , b; cin >> n >> a >> b;
-    // 24 3 5
-    // 1 se  3  , 6 aayega
-    // 3 se 9 , 8 aayega
-    // 6 se 18 , 11 aayega
-    // 9 se 27 , 14 aayega
-    // 8 se 24 , 13 aayega
+    
+    int n; cin >> n;
+    string str; cin >> str;
 
-
-    // 1, na, n+b
-
-
-
-    if((n-1)%b == 0){
+    if (str.substr(0, 4) == "2020" or str.substr(n - 4, 4) == "2020") {
         yes
         return;
     }
 
-    if(a==1){
-        no
+    int i = 0;
+
+    if (str.substr(0, 3) == "202" && str[n - 1] == '0') {
+        yes
+        return;
+    }
+    if (str.substr(0, 2) == "20" && str.substr(n - 2, 2) == "20") {
+        yes
+        return;
+    }
+    if (str[0] == '2' && str.substr(n - 3, 3) == "020") {
+        yes
         return;
     }
 
 
-    for(int i = a; i<=n; i*=a){
-        if((n-i)%b == 0){
-            yes
-            return; 
-        }
-    }
-    
+
     no
+
+    
+
+
+    
+    
 }
 
 

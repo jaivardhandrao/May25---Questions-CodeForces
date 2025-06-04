@@ -1,6 +1,6 @@
 /*
  * Author: Jaivardhan D Rao
- * Date: 2025-05-28 14:47
+ * Date: 2025-05-29 23:06
  */
 #include<bits/stdc++.h>
 using namespace std;
@@ -17,8 +17,8 @@ using namespace std;
 #define vi      vector<int>
 #define v      vector
 #define mii      map<int , int>
-#define yes     cout<<"Yes"<<endl;
-#define no      cout<<"No"<<endl;
+#define yes     cout<<"YES"<<endl;
+#define no      cout<<"NO"<<endl;
 #define JaivardhanDRao      cin.tie(nullptr)->sync_with_stdio(false);
 using pii = pair<int , int>;
 #define uset      unordered_set<int>
@@ -39,41 +39,68 @@ const int INF = 1e6 + 1;
 const bool test = 1;
 
 
+vvi ans;
+vi curr;
+
+void rec(int idx , vi &arr , int x){
+    if(idx >= arr.size()){
+        if(x == 0){
+            ans.pb(curr);
+        }
+        return;
+    }
+
+    rec(idx + 1 , arr , x);
+
+
+    if(x - arr[idx] >= 0) {
+        curr.pb(arr[idx]);
+        rec(idx + 1 , arr , x - arr[idx]);
+        curr.pop_back();
+    }
+}
 
 void solve(){
-         
-    int n , a , b; cin >> n >> a >> b;
-    // 24 3 5
-    // 1 se  3  , 6 aayega
-    // 3 se 9 , 8 aayega
-    // 6 se 18 , 11 aayega
-    // 9 se 27 , 14 aayega
-    // 8 se 24 , 13 aayega
 
 
-    // 1, na, n+b
-
-
-
-    if((n-1)%b == 0){
-        yes
-        return;
-    }
-
-    if(a==1){
-        no
-        return;
-    }
-
-
-    for(int i = a; i<=n; i*=a){
-        if((n-i)%b == 0){
-            yes
-            return; 
-        }
-    }
+    ans.clear();
+    curr.clear();
     
-    no
+
+    int x; cin >> x;
+
+    if(x < 10){
+        cout << x << endl;
+        return;
+    }
+
+    vi arr = {1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9};
+
+    rec(0 , arr , x);
+
+
+    vi res;
+
+    for(int i = 0; i<ans.size(); i++){
+        sort(all(ans[i]));
+        string s;
+        for(auto &it : ans[i]) s += to_string(it);
+        res.pb(stoi(s));
+    }
+
+    sort(all(res));
+    // debug(res);
+
+    if(res.size() == 0){
+        cout << -1 << endl;
+        return;
+    }
+
+
+    cout << res[0] << endl;
+
+
+    
 }
 
 
@@ -81,6 +108,7 @@ signed main(){
     JaivardhanDRao
     int t=1;
     test && cin >> t;
+    // calc();
     for(int i = 0; i < t; i++){
       //cout << "Case #" << i + 1 << ": " << endl;
         solve();
